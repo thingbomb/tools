@@ -1,0 +1,83 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Button from "../../components/Button.astro";
+import Card from "../../components/Card.astro";
+---
+
+<Layout title="Reverse Text - Tools">
+  <main>
+    <h1>Reverse <span class="text-gradient">Text</span></h1>
+    <div class="encode-container">
+      <textarea
+        id="input"
+        placeholder="Enter text to reverse"
+        class="input-area"></textarea>
+      <textarea
+        id="output"
+        placeholder="Reversed text will appear here"
+        class="input-area"></textarea>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .encode-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  .input-area {
+    width: 100%;
+    height: 150px;
+    padding: 0.8rem;
+    background-color: #23262d;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  .input-area:focus {
+    outline: none;
+    border-color: rgb(var(--accent-light));
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    if (window.location.pathname === "/tools/reverse-text") {
+      const input = document.getElementById("input") as HTMLTextAreaElement;
+      const output = document.getElementById("output") as HTMLTextAreaElement;
+
+      input.addEventListener("input", () => {
+        const text = input.value;
+        const reversed = text.split("").reverse().join("");
+        output.value = reversed;
+      });
+    }
+  });
+</script>
