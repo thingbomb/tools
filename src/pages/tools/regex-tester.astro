@@ -1,0 +1,104 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Button from "../../components/Button.astro";
+import Card from "../../components/Card.astro";
+---
+
+<Layout title="Regex Tester - Tools">
+  <main>
+    <h1>Regex <span class="text-gradient">Tester</span></h1>
+    <div class="regex-container">
+      <textarea id="input" placeholder="Enter text to test" class="input-area"
+      ></textarea>
+      <input
+        id="regex"
+        placeholder="Enter your regex (e.g., \\d+)"
+        class="input-field"
+        type="text"
+      />
+      <textarea
+        id="output"
+        placeholder="Matched results will appear here"
+        class="input-area"
+        readonly></textarea>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .regex-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  .input-area,
+  .input-field {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #23262d;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+  }
+  .input-area {
+    height: 150px;
+    resize: vertical;
+  }
+  .input-field {
+    height: 40px;
+  }
+  .input-area:focus,
+  .input-field:focus {
+    outline: none;
+    border-color: rgb(var(--accent-light));
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    if (window.location.pathname === "/tools/regex-tester") {
+      const input = document.getElementById("input") as HTMLTextAreaElement;
+      const regexField = document.getElementById("regex") as HTMLInputElement;
+      const output = document.getElementById("output") as HTMLTextAreaElement;
+
+      const updateOutput = () => {
+        try {
+          const text = input.value;
+          const regex = new RegExp(regexField.value, "g");
+          const matches = text.match(regex);
+          output.value = matches ? matches.join("\n") : "No matches found.";
+        } catch (err) {
+          output.value = `Error: Invalid regex.\n${err.message}`;
+        }
+      };
+
+      input.addEventListener("input", updateOutput);
+      regexField.addEventListener("input", updateOutput);
+    }
+  });
+</script>
