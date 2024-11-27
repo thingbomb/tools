@@ -1,31 +1,26 @@
 ---
 interface Props {
-  title: string;
-  body: string;
-  href: string;
-  id?: string;
+  title?: string;
+  body?: string;
+  href?: string;
+  id: string;
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body, id } = Astro.props;
 ---
 
-<li class="link-card">
-  <a href={href}>
-    <h2 class="card-title">
-      {title}
-      <span>&rarr;</span>
-    </h2>
-    <p class="card-body">
-      {body}
-    </p>
-  </a>
-</li>
+<button class="button-card" id={id} title={title}>
+  <slot />
+</button>
 <style>
-  .link-card {
+  .button-card {
     list-style: none;
     display: flex;
-    padding: 1px;
+    padding: 12px;
     background-color: #23262d;
+    color: white;
+    border: none;
+    cursor: pointer;
     background-image: none;
     background-size: 400%;
     border-radius: 7px;
@@ -33,7 +28,7 @@ const { href, title, body } = Astro.props;
     transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
   }
-  .link-card > a {
+  .button-card > a {
     width: 100%;
     text-decoration: none;
     line-height: 1.4;
@@ -51,13 +46,12 @@ const { href, title, body } = Astro.props;
   p {
     margin-top: 0.5rem;
     margin-bottom: 0;
-    font-size: 1rem;
   }
-  .link-card:is(:hover) {
+  .button-card:is(:hover) {
     background-position: 0;
     background-image: var(--accent-gradient);
   }
-  .link-card:is(:hover) h2 {
+  .button-card:is(:hover, :focus-within) h2 {
     color: rgb(var(--accent-light));
   }
 </style>
