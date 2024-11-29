@@ -83,7 +83,7 @@ import Card from "../../components/Card.astro";
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    if (window.location.pathname === "/tools/case-changer") {
+    if (window.location.pathname.startsWith("/tools/case-changer")) {
       const input = document.getElementById("input") as HTMLTextAreaElement;
       const output = document.getElementById("output") as HTMLTextAreaElement;
       const upperButton = document.getElementById("upper") as HTMLButtonElement;

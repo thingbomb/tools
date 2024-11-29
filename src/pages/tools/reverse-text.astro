@@ -69,7 +69,7 @@ import Card from "../../components/Card.astro";
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    if (window.location.pathname === "/tools/reverse-text") {
+    if (window.location.pathname.startsWith("/tools/reverse-text")) {
       const input = document.getElementById("input") as HTMLTextAreaElement;
       const output = document.getElementById("output") as HTMLTextAreaElement;
 

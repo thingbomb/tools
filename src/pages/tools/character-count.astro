@@ -68,7 +68,7 @@ import Card from "../../components/Card.astro";
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    if (window.location.pathname === "/tools/character-count") {
+    if (window.location.pathname.startsWith("/tools/character-count")) {
       const input = document.getElementById("input") as HTMLTextAreaElement;
       const card = document.querySelector(".link-card") as HTMLElement;
 

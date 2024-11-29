@@ -73,7 +73,7 @@ import Button from "../../components/Button.astro";
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    if (window.location.pathname === "/tools/base64-encode") {
+    if (window.location.pathname.startsWith("/tools/base64-encode")) {
       const input = document.getElementById("input") as HTMLTextAreaElement;
       const output = document.getElementById("output") as HTMLTextAreaElement;
       const encodeButton = document.getElementById("encode");

@@ -81,7 +81,7 @@ import Card from "../../components/Card.astro";
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    if (window.location.pathname === "/tools/regex-tester") {
+    if (window.location.pathname.startsWith("/tools/regex-tester")) {
       const input = document.getElementById("input") as HTMLTextAreaElement;
       const regexField = document.getElementById("regex") as HTMLInputElement;
       const output = document.getElementById("output") as HTMLTextAreaElement;
